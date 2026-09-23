@@ -322,7 +322,10 @@ export const catalogService = {
       notifyCatalogChange();
     } catch (e) {
       console.error('[catalogService] Error saving to storage:', e);
-      throw new Error('Gagal menyimpan ke penyimpanan lokal browser. Kapasitas mungkin penuh.');
+      if (e?.name === 'QuotaExceededError') {
+        throw new Error('Penyimpanan browser penuh. Hapus beberapa produk lama atau gunakan gambar yang lebih kecil.');
+      }
+      throw new Error('Gagal menyimpan produk ke penyimpanan browser.');
     }
 
     return newProduct;
@@ -407,6 +410,9 @@ export const catalogService = {
       notifyCatalogChange();
     } catch (e) {
       console.error('[catalogService] Error updating storage:', e);
+      if (e?.name === 'QuotaExceededError') {
+        throw new Error('Penyimpanan browser penuh. Hapus beberapa produk lama atau gunakan gambar yang lebih kecil.');
+      }
       throw new Error('Gagal memperbarui data di penyimpanan browser.');
     }
 

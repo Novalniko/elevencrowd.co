@@ -270,7 +270,20 @@ export function AdminPage({ onNavigateToStore, onLogout }) {
 
     Promise.all(selectedFiles.map((file) => new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = (uploadEvent) => resolve(uploadEvent.target?.result);
+      reader.onload = (uploadEvent) => {
+        const source = new Image();
+        source.onload = () => {
+          const maxDimension = 1400;
+          const scale = Math.min(1, maxDimension / Math.max(source.naturalWidth, source.naturalHeight));
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(source.naturalWidth * scale));
+          canvas.height = Math.max(1, Math.round(source.naturalHeight * scale));
+          canvas.getContext('2d').drawImage(source, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL('image/jpeg', 0.78));
+        };
+        source.onerror = reject;
+        source.src = uploadEvent.target?.result;
+      };
       reader.onerror = reject;
       reader.readAsDataURL(file);
     }))).then((uploadedImages) => {
