@@ -99,7 +99,12 @@ export function validateCatalog(data) {
     errors.status = 'Status wajib dipilih (Tersedia, Habis, atau Pre-Order).';
   }
 
-  // 6. Gambar
+  // 6. Warna
+  if (!data.color || typeof data.color !== 'string' || !data.color.trim()) {
+    errors.color = 'Warna produk wajib diisi.';
+  }
+
+  // 7. Gambar
   if (!data.image || typeof data.image !== 'string' || !data.image.trim()) {
     errors.image = 'Foto/gambar merchandise wajib diisi atau diunggah.';
   } else if (!data.image.startsWith('http') && !data.image.startsWith('data:image/') && !data.image.startsWith('/')) {

@@ -274,8 +274,10 @@ export function AdminPage({ onNavigateToStore, onLogout }) {
       reader.onerror = reject;
       reader.readAsDataURL(file);
     }))).then((uploadedImages) => {
-      const images = [...formData.images, ...uploadedImages.filter(Boolean)].slice(0, 4);
-      setFormData((prev) => ({ ...prev, images, image: images[0] || prev.image }));
+      setFormData((prev) => {
+        const images = [...prev.images, ...uploadedImages.filter(Boolean)].slice(0, 4);
+        return { ...prev, images, image: images[0] || prev.image };
+      });
       showToast('info', `${uploadedImages.length} foto berhasil diunggah.`);
     }).catch(() => {
       showToast('error', 'Gagal membaca salah satu file gambar.');
