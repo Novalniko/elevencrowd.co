@@ -9,18 +9,13 @@ export function CartDrawer({
   onUpdateQuantity, 
   onRemoveItem, 
   onClearCart,
-  onExploreProducts
+  onExploreProducts,
+  onCheckout
 }) {
   if (!isOpen) return null;
 
   const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-
-  const handleCheckoutWA = () => {
-    if (cart.length === 0) return;
-    const waUrl = BRAND_CONFIG.createCartOrderUrl(cart);
-    window.open(waUrl, '_blank');
-  };
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-neutral-950/60 backdrop-blur-sm flex justify-end animate-fadeIn">
@@ -54,7 +49,7 @@ export function CartDrawer({
         <div className="p-5 flex-1 overflow-y-auto divide-y divide-neutral-100 space-y-4">
           {cart.length > 0 ? (
             cart.map((item, idx) => (
-              <div key={`${item.id}-${item.size}-${item.variantOption}-${idx}`} className="pt-4 first:pt-0 flex gap-4 items-center">
+              <div key={`${item.id}-${item.size}-${item.variantOption}-${item.color}-${idx}`} className="pt-4 first:pt-0 flex gap-4 items-center">
                 
                 {/* Thumbnail */}
                 <div className="w-16 h-20 bg-neutral-100 rounded-xl overflow-hidden flex-shrink-0 border border-neutral-200">
@@ -79,6 +74,11 @@ export function CartDrawer({
                         {item.variantOption}
                       </span>
                     )}
+                    {item.color && (
+                      <span className="bg-neutral-100 px-2 py-0.5 rounded font-bold text-neutral-800 border border-neutral-200">
+                        {item.color}
+                      </span>
+                    )}
                     <span>{BRAND_CONFIG.formatPrice(item.price)}</span>
                   </div>
 
@@ -86,7 +86,7 @@ export function CartDrawer({
                   <div className="flex items-center justify-between mt-3">
                     <div className="inline-flex items-center border border-neutral-200 rounded-lg bg-neutral-50 overflow-hidden">
                       <button
-                        onClick={() => onUpdateQuantity(item.id, item.size, Math.max(1, item.quantity - 1), item.variantOption)}
+                        onClick={() => onUpdateQuantity(item.id, item.size, Math.max(1, item.quantity - 1), item.variantOption, item.color)}
                         className="px-2 py-1 text-neutral-600 hover:bg-neutral-200 transition-colors"
                       >
                         <Minus className="w-3 h-3" />
@@ -95,7 +95,7 @@ export function CartDrawer({
                         {item.quantity}
                       </span>
                       <button
-                        onClick={() => onUpdateQuantity(item.id, item.size, item.quantity + 1, item.variantOption)}
+                        onClick={() => onUpdateQuantity(item.id, item.size, item.quantity + 1, item.variantOption, item.color)}
                         className="px-2 py-1 text-neutral-600 hover:bg-neutral-200 transition-colors"
                       >
                         <Plus className="w-3 h-3" />
@@ -103,7 +103,7 @@ export function CartDrawer({
                     </div>
 
                     <button
-                      onClick={() => onRemoveItem(item.id, item.size, item.variantOption)}
+                      onClick={() => onRemoveItem(item.id, item.size, item.variantOption, item.color)}
                       className="text-neutral-400 hover:text-rose-500 p-1.5 transition-colors"
                       title="Hapus dari keranjang"
                     >
@@ -163,11 +163,11 @@ export function CartDrawer({
 
             <div className="space-y-2">
               <button
-                onClick={handleCheckoutWA}
+                onClick={onCheckout}
                 className="w-full flex items-center justify-center gap-2 bg-neutral-950 hover:bg-neutral-800 text-white py-3.5 px-4 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-400" />
-                <span>CHECKOUT VIA WHATSAPP ({BRAND_CONFIG.whatsappDisplay})</span>
+                <span>CHECKOUT PESANAN</span>
               </button>
 
               <button

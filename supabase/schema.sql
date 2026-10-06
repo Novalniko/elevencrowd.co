@@ -36,6 +36,14 @@ create table if not exists public.orders (
   created_at timestamptz not null default now()
 );
 
+create table if not exists public.store_settings (
+  id text primary key,
+  payment_methods jsonb not null default '[]'::jsonb,
+  updated_at timestamptz not null default now()
+);
+
+grant select, insert, update on table public.store_settings to anon, authenticated;
+
 create or replace function public.update_updated_at_column()
 returns trigger as $$
 begin

@@ -4,10 +4,10 @@ import { Instagram, MessageCircle, Heart } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-neutral-200 text-neutral-800 pt-16 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#f7f7f5] border-t border-[#d7d7d2] text-neutral-800 pt-16 pb-12">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-neutral-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[#d7d7d2]">
           
           {/* Brand Info */}
           <div className="lg:col-span-5 space-y-4">
@@ -16,7 +16,7 @@ export function Footer() {
                 ELEVEN CROWD<span className="text-neutral-400">.CO</span>
               </span>
               <span className="text-[11px] tracking-[0.25em] text-neutral-500 uppercase -mt-1 font-semibold">
-                Authentic Streetwear & Apparel
+                Authentic High Quality Streetwear
               </span>
             </div>
 

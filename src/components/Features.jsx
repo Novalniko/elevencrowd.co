@@ -26,36 +26,36 @@ export function Features() {
   ];
 
   return (
-    <section id="keunggulan" className="py-20 bg-white border-b border-neutral-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="keunggulan" className="py-14 sm:py-20 bg-[#e5e5df] border-b border-[#d7d7d2]">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <span className="text-xs font-bold uppercase tracking-widest text-neutral-400">
-            HIGH QUALITY STREETWEAR
+        <div className="max-w-3xl mb-10 space-y-3">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500">
+            The ElevenCrowd standard
           </span>
-          <h2 className="font-heading text-4xl sm:text-6xl text-neutral-950 tracking-tight">
-            MENGAPA MEMILIH ELEVENCROWD.CO?
+          <h2 className="font-heading text-4xl sm:text-6xl text-neutral-950 tracking-tight leading-none max-w-2xl">
+            BUILT FOR THE EVERYDAY.
           </h2>
-          <p className="text-sm sm:text-base text-neutral-500 font-normal">
-             High quality Original Local Brand 100% Made with pride for people pleasure.
+          <p className="text-sm sm:text-base text-neutral-600 font-normal max-w-md">
+            High quality original local streetwear, made with pride for people pleasure.
           </p>
         </div>
 
         {/* Feature Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-l border-t border-neutral-400">
           {highlights.map((item, idx) => (
             <div 
               key={idx}
-              className="p-8 rounded-3xl bg-neutral-50 border border-neutral-200 hover:border-neutral-400 hover:bg-white transition-all duration-300 hover:shadow-card group"
+              className="min-h-[245px] p-5 sm:p-6 border-r border-b border-neutral-400 transition-colors duration-300 hover:bg-[#efefe9] group"
             >
-              <div className="w-14 h-14 rounded-2xl bg-white border border-neutral-200 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
+              <div className="w-10 h-10 border border-neutral-400 flex items-center justify-center mb-8 group-hover:bg-white transition-colors">
                 {item.icon}
               </div>
-              <h3 className="font-heading text-2xl text-neutral-900 tracking-wide mb-2">
+              <h3 className="font-heading text-xl sm:text-2xl text-neutral-900 tracking-wide leading-[1.05] mb-2 max-w-[14rem]">
                 {item.title}
               </h3>
-              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal max-w-[18rem]">
                 {item.desc}
               </p>
             </div>

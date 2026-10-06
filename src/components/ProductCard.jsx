@@ -6,7 +6,7 @@ export function ProductCard({ product, onQuickView, onAddToCart }) {
   const defaultSize = product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'All Size';
 
   return (
-    <div className="group bg-white rounded-2xl border border-neutral-200 overflow-hidden hover:border-neutral-400 hover:shadow-card transition-all duration-300 flex flex-col">
+    <div className="group bg-white border-t border-[#d7d7d2] overflow-hidden transition-colors duration-300 flex flex-col">
       
       {/* Image Container with Badges & Hover Overlay */}
       <div className="relative aspect-[4/5] bg-neutral-100 overflow-hidden cursor-pointer" onClick={() => onQuickView(product)}>
@@ -46,7 +46,7 @@ export function ProductCard({ product, onQuickView, onAddToCart }) {
 
         {/* Category Pill on image */}
         <div className="absolute top-3 right-3">
-          <span className="bg-white/80 backdrop-blur-sm text-neutral-800 text-[10px] font-semibold px-2 py-0.5 rounded uppercase tracking-wider">
+          <span className="bg-white/90 text-neutral-800 text-[10px] font-semibold px-2 py-1 uppercase tracking-wider">
             {product.category}
           </span>
         </div>
@@ -67,8 +67,10 @@ export function ProductCard({ product, onQuickView, onAddToCart }) {
           <button
             onClick={(e) => {
               e.stopPropagation();
+              if (product.status === 'Habis' || product.stock === 0) return;
               onAddToCart(product, defaultSize);
             }}
+            disabled={product.status === 'Habis' || product.stock === 0}
             className="p-3 bg-neutral-950 text-white rounded-full hover:bg-neutral-800 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all"
             title="Tambah ke Keranjang"
           >
@@ -78,7 +80,7 @@ export function ProductCard({ product, onQuickView, onAddToCart }) {
       </div>
 
       {/* Card Content Details */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
+      <div className="py-5 flex-1 flex flex-col justify-between">
         <div>
           {/* Sizes Available & Stock */}
           <div className="flex flex-wrap items-center justify-between gap-1 mb-2">
@@ -87,7 +89,7 @@ export function ProductCard({ product, onQuickView, onAddToCart }) {
               {product.sizes?.map((sz, idx) => (
                 <span 
                   key={idx} 
-                  className="text-[10px] font-medium text-neutral-600 bg-neutral-100 px-1.5 py-0.5 rounded border border-neutral-200"
+                  className="text-[10px] font-medium text-neutral-600 border-b border-neutral-300 px-1.5 py-0.5"
                 >
                   {sz}
                 </span>
@@ -103,7 +105,7 @@ export function ProductCard({ product, onQuickView, onAddToCart }) {
           {/* Product Title */}
           <h3 
             onClick={() => onQuickView(product)}
-            className="font-heading text-xl text-neutral-900 tracking-wide hover:text-neutral-600 cursor-pointer line-clamp-1 transition-colors"
+            className="font-heading text-2xl text-neutral-900 tracking-wide hover:text-neutral-600 cursor-pointer line-clamp-2 transition-colors"
           >
             {product.name}
           </h3>
@@ -115,7 +117,7 @@ export function ProductCard({ product, onQuickView, onAddToCart }) {
         </div>
 
         {/* Price & Action Button */}
-        <div className="pt-4 mt-4 border-t border-neutral-100 flex items-center justify-between">
+        <div className="pt-4 mt-4 border-t border-neutral-200 flex items-center justify-between">
           <div>
             <span className="text-[10px] uppercase tracking-wider text-neutral-400 block font-semibold">Harga</span>
             <span className="text-base sm:text-lg font-bold text-neutral-950 tracking-tight">
@@ -125,7 +127,7 @@ export function ProductCard({ product, onQuickView, onAddToCart }) {
 
           <button
             onClick={() => onQuickView(product)}
-            className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-neutral-950 hover:text-neutral-600 bg-neutral-100 hover:bg-neutral-200 px-3 py-2 rounded-lg transition-colors"
+            className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-950 hover:text-neutral-600 border-b border-neutral-950 pb-1 transition-colors"
           >
             <span>Pesan</span>
             <ArrowUpRight className="w-3.5 h-3.5" />

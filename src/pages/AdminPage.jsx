@@ -33,6 +33,7 @@ import {
 import { catalogService, validateCatalog } from '../services/catalogService';
 import { authService } from '../services/authService';
 import { BRAND_CONFIG } from '../data/config';
+import { AdminOrders } from '../components/AdminOrders';
 
 const CATEGORY_OPTIONS = ['T-Shirt', 'Oversized', 'Hoodie', 'Jacket', 'Aksesoris'];
 const STATUS_OPTIONS = ['Tersedia', 'Habis', 'Pre-Order'];
@@ -1016,6 +1017,8 @@ export function AdminPage({ onNavigateToStore, onLogout }) {
 
         </div>
 
+        <AdminOrders />
+
       </main>
 
       {/* Footer Info */}
@@ -1212,6 +1215,9 @@ export function AdminPage({ onNavigateToStore, onLogout }) {
                     className="w-full bg-white border border-neutral-300 rounded-xl px-4 py-2.5 text-xs text-neutral-900 outline-none focus:border-neutral-950"
                     required
                   />
+                  <p className="text-[11px] text-neutral-500 mt-1.5">
+                    Pisahkan beberapa pilihan warna dengan koma. Pelanggan akan memilihnya saat memesan.
+                  </p>
                 </div>
 
                 {/* Cutting */}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,6 +7,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    background: #f7f7f5;
+  }
+
+  body {
+    background: #f7f7f5;
   }
 }
 
@@ -25,10 +32,17 @@
 }
 
 .font-heading {
-  font-family: 'Bebas Neue', cursive, sans-serif;
-  letter-spacing: 0.05em;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 0.95;
 }
 
 .font-body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0;
+}
+
+.editorial-rule {
+  border-color: #d7d7d2;
 }

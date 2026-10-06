@@ -30,13 +30,14 @@ export const BRAND_CONFIG = {
   },
 
   // Helper untuk membuat link WhatsApp pemesanan 1 produk
-  createOrderUrl: ({ product, size, variantOption = "", quantity = 1, notes = "" }) => {
+  createOrderUrl: ({ product, size, variantOption = "", color = "", quantity = 1, notes = "" }) => {
     const text = `Halo Admin ElevenCrowd.co! 👋
 Saya ingin order produk berikut:
 
 📦 *PRODUK:* ${product.name}
 📏 *UKURAN:* ${size}
 ${variantOption ? `👕 *PILIHAN:* ${variantOption}\n` : ''}🔢 *JUMLAH:* ${quantity} pcs
+${color ? `🎨 *WARNA:* ${color}\n` : ''}
 💰 *HARGA:* ${BRAND_CONFIG.formatPrice(product.price * quantity)}
 ${notes ? `📝 *CATATAN:* ${notes}\n` : ''}
 ---
@@ -57,6 +58,7 @@ Mohon informasi ketersediaan stok & total ongkirnya ya. Terima kasih! 🙏`;
       return `${index + 1}. *${item.name}*
    - Size: ${item.size}
     ${item.variantOption ? `- Pilihan: ${item.variantOption}\n  ` : ''}- Qty: ${item.quantity} pcs
+      ${item.color ? `- Warna: ${item.color}\n  ` : ''}
    - Subtotal: ${BRAND_CONFIG.formatPrice(item.price * item.quantity)}`;
     }).join('\n\n');
 

@@ -21,6 +21,11 @@ function getDefaultVariantOptions(category) {
 function migrateProduct(item) {
   if (!item || typeof item !== 'object') return null;
 
+  const legacyColor = item.specs?.color || item.color || 'Standard';
+  const colors = Array.isArray(item.specs?.colors) && item.specs.colors.length > 0
+    ? item.specs.colors.filter(Boolean)
+    : String(legacyColor).split(',').map((color) => color.trim()).filter(Boolean);
+
   return {
     id: item.id || `ec-legacy-${Math.random().toString(36).substring(2, 9)}`,
     name: item.name || 'Untitled Merchandise',
@@ -38,7 +43,8 @@ function migrateProduct(item) {
       ...(item.specs || {}),
       material: item.specs?.material || 'Cotton Combed 24s Premium Heavyweight',
       fit: item.specs?.fit || 'Standard Streetwear Cut',
-      color: item.specs?.color || 'Standard',
+      color: colors.join(', '),
+      colors,
       variantOptions: Array.isArray(item.specs?.variantOptions) && item.specs.variantOptions.length > 0
         ? item.specs.variantOptions
         : getDefaultVariantOptions(item.category)
@@ -270,6 +276,7 @@ export const catalogService = {
           material: (data.specs?.material || data.material || 'Cotton Combed 24s Heavyweight').trim(),
           fit: (data.specs?.fit || data.fit || 'Standard Streetwear Cut').trim(),
           color: (data.specs?.color || data.color || 'Standard Edition').trim(),
+          colors: String(data.specs?.color || data.color || 'Standard Edition').split(',').map((color) => color.trim()).filter(Boolean),
           variantOptions: Array.isArray(data.variantOptions) ? data.variantOptions : []
         },
         description: (data.description || `Koleksi eksklusif ${data.name} dari ElevenCrowd.co`).trim()
@@ -309,6 +316,7 @@ export const catalogService = {
         material: (data.specs?.material || data.material || 'Cotton Combed 24s Heavyweight').trim(),
         fit: (data.specs?.fit || data.fit || (data.category === 'Oversized' ? 'Drop Shoulder Boxy Cut' : 'Standard Streetwear Cut')).trim(),
         color: (data.specs?.color || data.color || 'Standard Edition').trim(),
+        colors: String(data.specs?.color || data.color || 'Standard Edition').split(',').map((color) => color.trim()).filter(Boolean),
         variantOptions: Array.isArray(data.variantOptions) ? data.variantOptions : []
       },
       description: (data.description || `Koleksi eksklusif ${data.name} dari ElevenCrowd.co`).trim(),
@@ -358,6 +366,7 @@ export const catalogService = {
           material: (data.specs?.material || data.material || 'Cotton Combed 24s Heavyweight').trim(),
           fit: (data.specs?.fit || data.fit || 'Standard Streetwear Cut').trim(),
           color: (data.specs?.color || data.color || 'Standard Edition').trim(),
+          colors: String(data.specs?.color || data.color || 'Standard Edition').split(',').map((color) => color.trim()).filter(Boolean),
           variantOptions: Array.isArray(data.variantOptions) ? data.variantOptions : []
         },
         description: (data.description !== undefined ? data.description : '').trim(),
@@ -397,6 +406,7 @@ export const catalogService = {
         material: (data.specs?.material || data.material || oldItem.specs?.material || 'Cotton Combed 24s').trim(),
         fit: (data.specs?.fit || data.fit || oldItem.specs?.fit || (data.category === 'Oversized' ? 'Drop Shoulder Boxy Cut' : 'Standard Cut')).trim(),
         color: (data.specs?.color || data.color || oldItem.specs?.color || 'Clean').trim(),
+        colors: String(data.specs?.color || data.color || oldItem.specs?.color || 'Clean').split(',').map((color) => color.trim()).filter(Boolean),
         variantOptions: Array.isArray(data.variantOptions) ? data.variantOptions : (oldItem.specs?.variantOptions || [])
       },
       description: (data.description !== undefined ? data.description : oldItem.description).trim(),

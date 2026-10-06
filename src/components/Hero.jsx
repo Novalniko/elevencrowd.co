@@ -1,91 +1,42 @@
 import React from 'react';
-import { ArrowDown, MessageCircle, ShieldCheck, Truck, RefreshCw, Zap } from 'lucide-react';
-import { BRAND_CONFIG } from '../data/config';
+import { ArrowDown, ShieldCheck, Truck, Zap } from 'lucide-react';
 
 export function Hero({ onExploreClick }) {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-neutral-50 via-white to-white pt-8 pb-16 lg:pt-14 lg:pb-24 border-b border-neutral-200">
-      
-      {/* Background Subtle Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
+    <section className="relative overflow-hidden bg-[#f7f7f5] border-b border-[#d7d7d2]">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 pt-8 sm:pt-12 lg:pt-16">
+        <div className="flex items-center justify-between border-y border-[#d7d7d2] py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500">
+          <span>ElevenCrowd.co / 2026</span>
+          <span>New season / </span>
+        </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
-          {/* Left Text & CTAs */}
-          <div className="lg:col-span-12 space-y-6 text-left">
-            
-            {/* Tag Badge */}
-            <div className="inline-flex items-center gap-2 bg-neutral-100 border border-neutral-300 px-3.5 py-1.5 rounded-full shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-neutral-900 animate-ping" />
-              <span className="text-[11px] font-bold uppercase tracking-widest text-neutral-800">
-                NEW SEASON COLLECTION • 2026 DROP
-              </span>
-            </div>
-
-            {/* Main Streetwear Heading */}
-            <div className="space-y-1">
-              <h1 className="font-heading text-5xl sm:text-7xl lg:text-8xl tracking-tight text-neutral-950 leading-[0.92]">
-                HELLO,LADS CROWD!. <br />
-                WELCOME TO OUR WEBSITE AND HAPPY SHOPPING!
-              </h1>
-            </div>
-
-            {/* Subheading */}
-            <p className="text-base sm:text-lg text-neutral-600 max-w-xl font-normal leading-relaxed pt-2">
-              Koleksi terbaru dari kami yang selalu upgrade penampilan kalian,lads! <strong className="text-neutral-950 font-semibold">ElevenCrowd.co</strong>. Made with pride for people pleasure. 100% high quality cotton with plastisol ink
+        <div className="py-14 sm:py-20 lg:py-24">
+          <div className="relative z-10">
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-neutral-500 mb-5">
+              Welcome to our official website - ElevenCrowd.co
             </p>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-3">
+            <h1 className="font-heading text-[clamp(3.6rem,9vw,9.5rem)] text-neutral-950 leading-[0.86] max-w-4xl">
+              MADE FOR<br />PEOPLE PLEASURE
+            </h1>
+            <div className="flex flex-col sm:flex-row sm:items-end gap-6 mt-8 max-w-2xl">
+              <p className="text-sm leading-relaxed text-neutral-600 max-w-sm">
+              Upgrade your look when support the club. ElevenCrowd.co is built on the foundation of modern football culture.
+              </p>
               <button
                 onClick={onExploreClick}
-                className="inline-flex items-center justify-center gap-3 bg-neutral-950 hover:bg-neutral-800 text-white font-bold text-sm tracking-wider uppercase px-7 py-4 rounded-xl transition-all shadow-md hover:shadow-xl group"
+                className="inline-flex items-center gap-3 shrink-0 text-[11px] font-bold uppercase tracking-[0.15em] border-b-2 border-neutral-950 pb-2 hover:gap-5 transition-all"
               >
-                <span>JELAJAHI KATALOG</span>
-                <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform" />
+                Enter the shop <ArrowDown className="w-4 h-4 -rotate-45" />
               </button>
-
-              <a
-                href={BRAND_CONFIG.createInquiryUrl("Koleksi Terbaru ElevenCrowd")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-white hover:bg-neutral-50 text-neutral-950 border-2 border-neutral-900 font-bold text-sm tracking-wider uppercase px-6 py-3.5 rounded-xl transition-all shadow-sm hover:shadow-md"
-              >
-                <MessageCircle className="w-4 h-4 text-emerald-600" />
-                <span>KONSULTASI WA</span>
-              </a>
             </div>
-
-            {/* Trust Badges */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-neutral-200">
-              <div className="flex items-center gap-2.5 text-neutral-700">
-                <ShieldCheck className="w-5 h-5 text-neutral-950 flex-shrink-0" />
-                <div className="text-xs">
-                  <p className="font-bold text-neutral-900">100% Cotton</p>
-                  <p className="text-neutral-500">High Quality Material</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-neutral-700">
-                <Truck className="w-5 h-5 text-neutral-950 flex-shrink-0" />
-                <div className="text-xs">
-                  <p className="font-bold text-neutral-900">Kirim Cepat</p>
-                  <p className="text-neutral-500">Seluruh Indonesia</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5 text-neutral-700">
-                <Zap className="w-5 h-5 text-neutral-950 flex-shrink-0" />
-                <div className="text-xs">
-                  <p className="font-bold text-neutral-900">Fast Response</p>
-                  <p className="text-neutral-500">Admin 083896427726</p>
-                </div>
-              </div>
-            </div>
-
           </div>
 
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-[#d7d7d2] py-5 gap-5 text-[11px] uppercase tracking-[0.12em] text-neutral-600">
+          <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-neutral-950" /> Premium cotton / high density print</div>
+          <div className="flex items-center gap-2"><Truck className="w-4 h-4 text-neutral-950" /> Ships across Indonesia</div>
+          <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-neutral-950" /> New drops, limited quantities</div>
         </div>
       </div>
     </section>

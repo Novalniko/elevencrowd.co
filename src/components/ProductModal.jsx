@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X, MessageCircle, ShoppingBag, Check, ZoomIn, ShieldAlert } from 'lucide-react';
 import { BRAND_CONFIG } from '../data/config';
 
@@ -6,35 +6,43 @@ export function ProductModal({
   product, 
   isOpen, 
   onClose, 
-  onAddToCart
+  onAddToCart,
+  onStartOrder
 }) {
-  if (!isOpen || !product) return null;
-
-  const [selectedSize, setSelectedSize] = useState(
-    product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'All Size'
-  );
-  const variantOptions = product.specs?.variantOptions || [];
-  const [selectedVariant, setSelectedVariant] = useState(variantOptions[0] || '');
+  const variantOptions = product?.specs?.variantOptions || [];
+  const colorOptions = product?.specs?.colors?.length > 0
+    ? product.specs.colors
+    : (product?.specs?.color ? product.specs.color.split(',').map((color) => color.trim()).filter(Boolean) : []);
+  const [selectedSize, setSelectedSize] = useState('All Size');
+  const [selectedVariant, setSelectedVariant] = useState('');
+  const [selectedColor, setSelectedColor] = useState('');
   const [isCustomSizeOpen, setIsCustomSizeOpen] = useState(false);
   const [customSize, setCustomSize] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [isZoomed, setIsZoomed] = useState(false);
-  const productImages = product.images?.length > 0 ? product.images : [product.image];
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const handleOrderWA = () => {
-    const orderSize = selectedSize || 'Request size di atas XXL';
-    const waUrl = BRAND_CONFIG.createOrderUrl({
-      product,
-      size: orderSize,
-      variantOption: selectedVariant,
-      quantity
-    });
-    window.open(waUrl, '_blank');
-  };
+  useEffect(() => {
+    if (!product) return;
+    setSelectedSize(product.sizes?.[0] || 'All Size');
+    setSelectedVariant(product.specs?.variantOptions?.[0] || '');
+    setSelectedColor(product.specs?.colors?.[0] || product.specs?.color?.split(',')[0]?.trim() || '');
+    setIsCustomSizeOpen(false);
+    setCustomSize('');
+    setQuantity(1);
+    setIsZoomed(false);
+    setActiveImageIndex(0);
+  }, [product?.id]);
+
+  if (!isOpen || !product) return null;
+
+  const productImages = product.images?.length > 0 ? product.images : [product.image];
+  const isSoldOut = product.status === 'Habis' || product.stock === 0;
+
+  const handleOrder = () => onStartOrder(product, selectedSize || 'Request size di atas XXL', quantity, selectedVariant, selectedColor);
 
   const handleAddToCart = () => {
-    onAddToCart(product, selectedSize || 'Request size di atas XXL', quantity, selectedVariant);
+    onAddToCart(product, selectedSize || 'Request size di atas XXL', quantity, selectedVariant, selectedColor);
     onClose();
   };
 
@@ -161,6 +169,30 @@ export function ProductModal({
                 </div>
               )}
 
+              {colorOptions.length > 0 && (
+                <div>
+                  <label className="text-xs font-bold uppercase tracking-wider text-neutral-800 block mb-2">
+                    Pilih Warna:
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {colorOptions.map((color) => (
+                      <button
+                        key={color}
+                        type="button"
+                        onClick={() => setSelectedColor(color)}
+                        className={`py-2.5 px-4 text-xs font-bold rounded-xl border transition-all ${
+                          selectedColor === color
+                            ? 'bg-neutral-950 text-white border-neutral-950 shadow-sm scale-105'
+                            : 'bg-white text-neutral-800 border-neutral-300 hover:border-neutral-950'
+                        }`}
+                      >
+                        {color}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {variantOptions.length > 0 && (
                 <div>
                   <label className="text-xs font-bold uppercase tracking-wider text-neutral-800 block mb-2">
@@ -254,6 +286,7 @@ export function ProductModal({
                 <div className="inline-flex items-center border border-neutral-300 rounded-xl bg-white overflow-hidden shadow-sm">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    disabled={isSoldOut}
                     className="px-3 py-2 text-neutral-600 hover:bg-neutral-100 font-bold transition-colors"
                   >
                     -
@@ -263,6 +296,7 @@ export function ProductModal({
                   </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
+                    disabled={isSoldOut}
                     className="px-3 py-2 text-neutral-600 hover:bg-neutral-100 font-bold transition-colors"
                   >
                     +
@@ -276,16 +310,18 @@ export function ProductModal({
             <div className="space-y-3 pt-6 mt-4 border-t border-neutral-100">
               {/* WhatsApp Direct Order */}
               <button
-                onClick={handleOrderWA}
+                onClick={handleOrder}
+                disabled={isSoldOut}
                 className="w-full flex items-center justify-center gap-3 bg-neutral-950 hover:bg-neutral-800 text-white py-3.5 px-6 rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg"
               >
                 <MessageCircle className="w-5 h-5 text-emerald-400" />
-                <span>PESAN SEKARANG VIA WHATSAPP</span>
+                <span>LANJUTKAN KE CHECKOUT</span>
               </button>
 
               {/* Add to Cart */}
               <button
                 onClick={handleAddToCart}
+                disabled={isSoldOut}
                 className="w-full flex items-center justify-center gap-2 bg-white hover:bg-neutral-50 text-neutral-900 border-2 border-neutral-900 py-3 px-6 rounded-xl font-bold text-xs uppercase tracking-wider transition-all"
               >
                 <ShoppingBag className="w-4 h-4" />
@@ -294,7 +330,7 @@ export function ProductModal({
 
               <div className="flex items-center justify-center gap-1.5 text-[11px] text-neutral-500 text-center pt-1">
                 <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Pesanan akan dikirimkan langsung ke admin WhatsApp <strong>{BRAND_CONFIG.whatsappDisplay}</strong></span>
+                <span>{isSoldOut ? 'Produk sedang habis.' : <>Pesanan akan dikirimkan langsung ke admin WhatsApp <strong>{BRAND_CONFIG.whatsappDisplay}</strong></>}</span>
               </div>
             </div>
 

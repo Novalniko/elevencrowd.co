@@ -141,6 +141,7 @@ export const INITIAL_PRODUCTS = [
 export const CATEGORIES = [
   { id: "all", name: "Semua Koleksi", count: 6 },
   { id: "T-Shirt", name: "T-Shirt", count: 2 },
+  { id: "Oversized", name: "Oversized", count: 1 },
   { id: "Hoodie", name: "Hoodie & Crewneck", count: 2 },
   { id: "Jacket", name: "Jacket & Outerwear", count: 0 },
   { id: "Aksesoris", name: "Aksesoris", count: 1 },

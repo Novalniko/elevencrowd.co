@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ec-tee-01",
+    "name": "ElevenCrowd Signature Boxy Tee - White",
+    "category": "Oversized",
+    "price": 145000,
+    "stock": 42,
+    "status": "Tersedia",
+    "badge": "BEST SELLER",
+    "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1000&q=80",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "specs": {
+      "material": "100% Heavyweight Cotton 20s (210 GSM)",
+      "print": "Plastisol Screenprint Micro High Density",
+      "fit": "Drop Shoulder Boxy Cut",
+      "color": "Clean Off-White"
+    },
+    "description": "Kaos potongan boxy kontemporer dengan bahan katun tebal tidak menerawang, sangat adem dan nyaman digunakan sehari-hari."
+  },
+  {
+    "id": "ec-tee-02",
+    "name": "ElevenCrowd Heritage Typo T-Shirt - Black on White",
+    "category": "T-Shirt",
+    "price": 130000,
+    "stock": 28,
+    "status": "Tersedia",
+    "badge": "NEW DROP",
+    "image": "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=1000&q=80",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "specs": {
+      "material": "Cotton Combed 24s Premium Soft Touch",
+      "print": "Discharge & Plastisol Finishing",
+      "fit": "Regular Streetwear Fit",
+      "color": "Pure White"
+    },
+    "description": "T-Shirt streetwear klasik dengan tipografi khas ElevenCrowd, nyaman dipakai harian."
+  },
+  {
+    "id": "ec-hoodie-01",
+    "name": "ElevenCrowd Heavyweight Pullover Hoodie - Cream Stone",
+    "category": "Hoodie",
+    "price": 265000,
+    "stock": 15,
+    "status": "Tersedia",
+    "badge": "LIMITED",
+    "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1000&q=80",
+    "sizes": ["M", "L", "XL", "XXL"],
+    "specs": {
+      "material": "Cotton Fleece Heavy 330 GSM",
+      "print": "Embroidered Monogram Patch & HD Screenprint",
+      "fit": "Relaxed Streetwear Silhouette",
+      "color": "Cream / Light Sand"
+    },
+    "description": "Hoodie tebal dan lembut dengan lapisan dalam brushed fleece untuk cuaca dingin."
+  },
+  {
+    "id": "ec-acc-01",
+    "name": "ElevenCrowd Corduroy 6-Panel Cap - Off White",
+    "category": "Aksesoris",
+    "price": 95000,
+    "stock": 50,
+    "status": "Tersedia",
+    "badge": "BEST SELLER",
+    "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=1000&q=80",
+    "sizes": ["All Size (Adjustable)"],
+    "specs": {
+      "material": "Premium Fine Wale Corduroy Cotton",
+      "print": "3D Puff Embroidery Logo",
+      "fit": "Unstructured 6-Panel with Brass Buckle",
+      "color": "Off White"
+    },
+    "description": "Topi corduroy klasik dengan strap yang dapat disesuaikan dan gaya streetwear yang mudah dipadukan."
+  }
+]
