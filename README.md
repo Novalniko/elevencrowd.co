@@ -24,7 +24,9 @@ Website React akan berjalan dan dapat Anda akses di browser melalui:
 Panel admin tersedia di:
 👉 **`http://localhost:3001/admin`**
 
-Perubahan tampilan tersimpan di file proyek dan tetap ada setelah browser ditutup. Jika server berhenti atau komputer dinyalakan kembali, jalankan lagi `npm.cmd run dev` dari folder proyek lalu buka `http://localhost:3001`. Jangan membuka proyek lewat server PHP/XAMPP jika ingin melihat versi React ini.
+Perubahan kode/tampilan tersimpan di file proyek. Produk yang ditambahkan lewat dashboard admin disimpan di penyimpanan browser (`localStorage`), sehingga tetap ada saat halaman atau server localhost dibuka ulang selama menggunakan browser/profil yang sama, alamat `http://localhost:3001` yang sama, dan data situs browser tidak dihapus. Produk lokal ini belum otomatis masuk ke file proyek atau GitHub dan tidak muncul di browser/perangkat lain. Jika data situs browser dihapus, produk lokal dapat hilang. Untuk menyimpan katalog bersama lintas browser/perangkat, konfigurasi Supabase melalui `.env`.
+
+Jika server berhenti atau komputer dinyalakan kembali, jalankan lagi `npm.cmd run dev` dari folder proyek lalu buka `http://localhost:3001`. Jangan membuka proyek lewat server PHP/XAMPP jika ingin melihat versi React ini.
 
 ---
 
