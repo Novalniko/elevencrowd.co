@@ -9,7 +9,7 @@ Website e-commerce katalog pakaian streetwear modern untuk brand **ElevenCrowd.c
 ### 1. Masuk ke Direktori Proyek
 Buka PowerShell atau Command Prompt di folder ini:
 ```powershell
-cd "C:\Users\DELL 5420\.gemini\antigravity\scratch\elevencrowd-co"
+cd "C:\Users\DELL 5420\.gemini\antigravity\scratch\elevencrowd-co-project"
 ```
 
 ### 2. Jalankan Development Server
@@ -18,11 +18,13 @@ Ketik perintah berikut:
 npm.cmd run dev
 ```
 
-Website akan berjalan dan dapat Anda akses di browser melalui:
+Website React akan berjalan dan dapat Anda akses di browser melalui:
 👉 **`http://localhost:3001`**
 
 Panel admin tersedia di:
 👉 **`http://localhost:3001/admin`**
+
+Perubahan tampilan tersimpan di file proyek dan tetap ada setelah browser ditutup. Jika server berhenti atau komputer dinyalakan kembali, jalankan lagi `npm.cmd run dev` dari folder proyek lalu buka `http://localhost:3001`. Jangan membuka proyek lewat server PHP/XAMPP jika ingin melihat versi React ini.
 
 ---
 
@@ -47,7 +49,7 @@ Anda memiliki **2 cara praktis** untuk mengelola katalog pakaian:
 
 ### CARA 2: Melalui File Koding (`src/data/products.js`)
 Jika ingin menambahkan puluhan baju secara permanen di kode sumber:
-1. Buka file [`src/data/products.js`](file:///C:/Users/DELL%205420/.gemini/antigravity/scratch/elevencrowd-co/src/data/products.js).
+1. Buka file [`src/data/products.js`](./src/data/products.js).
 2. Salin salah satu blok template produk di dalam array `INITIAL_PRODUCTS`:
    ```javascript
    {
@@ -73,7 +75,7 @@ Jika ingin menambahkan puluhan baju secara permanen di kode sumber:
 
 ## 📱 Konfigurasi Nomor WhatsApp & Kontak Toko
 
-Seluruh konfigurasi kontak tersimpan rapi di file [`src/data/config.js`](file:///C:/Users/DELL%205420/.gemini/antigravity/scratch/elevencrowd-co/src/data/config.js):
+Seluruh konfigurasi kontak tersimpan rapi di file [`src/data/config.js`](./src/data/config.js):
 * **Nomor WhatsApp**: `6283896427726` (`083896427726`)
 * **Format Pesan Pemesanan**: Tersusun rapi mencantumkan nama baju, size terpilih, jumlah, subtotal, dan template data nama/alamat pemesan.
 * **Akun Instagram & TikTok**: Dapat disesuaikan di file config tersebut.
